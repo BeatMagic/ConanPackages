@@ -36,8 +36,15 @@ class TimSdkConan(ConanFile):
             # 将ImSDKFormac_CPP.framework复制到lib/目录
             tools.mkdir("lib/ImSDKForMac_CPP.framework")
             self.copy("*", dst="lib/ImSDKForMac_CPP.framework", src="src/ImSDKForMac_CPP.framework")
+        elif self.settings.os == "Windows":
+            self.copy("*.h", dst="include", src="ImSDK_Windows_CPP/include")
+            self.copy("*.lib", dst="lib", src="ImSDK_Windows_CPP/lib/Win64", keep_path=False)
+            self.copy("*.dll", dst="bin", src="ImSDK_Windows_CPP/lib/Win64", keep_path=False)
+            
 
     def package_info(self):
         if self.settings.os == "Macos":
             self.cpp_info.frameworkdirs.append(os.path.join(self.package_folder, 'lib'))
             self.cpp_info.frameworks.append("ImSDKForMac_CPP")
+        elif self.settings.os == "Windows":
+            self.cpp_info.libs = ["ImSDK"]
