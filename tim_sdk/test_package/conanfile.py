@@ -22,4 +22,4 @@ class TimSdkTestConan(ConanFile):
     def test(self):
         if not tools.cross_building(self):
 
-            self.run("./bin%sexample" % os.sep)
+            self.run(".%sexample" % os.sep)

@@ -14,7 +14,7 @@ class TimSdkConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
 
-    exports_sources = "./*"
+    exports_sources = "src/*"
 
     def source(self):
         if self.settings.os == "Windows":
@@ -23,19 +23,19 @@ class TimSdkConan(ConanFile):
                            "ImSDK_Windows_CPP.zip", verify=False)
 
             tools.unzip("ImSDK_Windows_CPP.zip", ".")
-        elif self.settings.os == "Macos":
-            # https://im.sdk.cloud.tencent.cn/download/plus/6.1.2155/cross_platform/ImSDK_Mac_CPP_6.1.2155.framework.zip
-            tools.download("https://im.sdk.cloud.tencent.cn/download/plus/6.1.2155/cross_platform/ImSDK_Mac_CPP_6.1.2155.framework.zip",
-                           "ImSDKForMac_CPP.framework.zip", verify=False)
-            tools.unzip("ImSDKForMac_CPP.framework.zip", ".")
+        # elif self.settings.os == "Macos":
+        #     # https://im.sdk.cloud.tencent.cn/download/plus/6.1.2155/cross_platform/ImSDK_Mac_CPP_6.1.2155.framework.zip
+        #     tools.download("https://im.sdk.cloud.tencent.cn/download/plus/6.1.2155/cross_platform/ImSDK_Mac_CPP_6.1.2155.framework.zip",
+        #                    "ImSDKForMac_CPP.framework.zip", verify=False)
+        #     tools.unzip("ImSDKForMac_CPP.framework.zip", ".")
 
     def package(self):
         if self.settings.os == "Macos":
             # 复制头文件
-            self.copy("*.h", dst="include", src="ImSDKForMac_CPP.framework/Versions/A/Headers")
+            self.copy("*.h", dst="include", src="src/ImSDKForMac_CPP.framework/Versions/A/Headers")
             # 将ImSDKFormac_CPP.framework复制到lib/目录
             tools.mkdir("lib/ImSDKForMac_CPP.framework")
-            self.copy("*", dst="lib/ImSDKForMac_CPP.framework", src="ImSDKForMac_CPP.framework", symlinks=False)
+            self.copy("*", dst="lib/ImSDKForMac_CPP.framework", src="src/ImSDKForMac_CPP.framework")
 
     def package_info(self):
         if self.settings.os == "Macos":
