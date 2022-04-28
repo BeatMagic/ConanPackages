@@ -5,7 +5,7 @@ project(AliyunOss CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14")
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14.0")
 
 # 引用第三方库
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
