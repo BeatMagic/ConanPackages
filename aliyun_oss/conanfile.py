@@ -23,7 +23,7 @@ class AliyunOssConan(ConanFile):
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*"
 
-    requires = ["openssl/1.1.1l", "libcurl/7.80.0"]
+    requires = ["openssl/1.1.1l", "libcurl/7.65.0"]
 
     def source(self):
         git = tools.Git(folder="src")
