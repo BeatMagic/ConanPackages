@@ -27,9 +27,9 @@ class AliyunOssConan(ConanFile):
 
     def source(self):
         git = tools.Git(folder="src")
-        git.clone('git@github.com:aliyun/aliyun-oss-cpp-sdk.git', 'master')
+        git.clone('git@github.com:BeatMagic/aliyun-oss-cpp-sdk.git', 'ace')
         subprocess.check_call(
-            ['git', 'checkout', '--quiet', 'bf4a2d7c97ed1a2c6fe277b3163f53d7d249bf7a'], cwd="src")
+            ['git', 'checkout', '--quiet', 'ace'], cwd="src")
 
     def config_options(self):
         if self.settings.os == "Windows":
